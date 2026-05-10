@@ -1,0 +1,24 @@
+[
+    {
+        "item_id": 1,
+        "nome": "Esqueleto",
+        "vida": 50,
+        "ataque": 10,
+        "defesa": 5
+    },
+
+    {
+        "item_id": 2,
+        "nome": "Zombie",
+        "vida": 75,
+        "ataque": 15,
+        "defesa": 10
+    },
+    {
+        "item_id": 3,
+        "nome": "Bruxa",
+        "vida": 60,
+        "ataque": 20,
+        "defesa": 2
+    }
+]

@@ -51,6 +51,9 @@ class Interface:
 #--------------------------------------------------------
 
 	def execute(self):
+
+		self.connection.settimeout(2)
+
 		player_name = input("\nInsira o nome do jogador (MAX 10 chars): ")
 		player_name_padded = player_name[:10].ljust(10)
 		self.send_str(self.connection, player_name_padded)
@@ -76,19 +79,18 @@ class Interface:
 				counter = 1
 
 		while True:
-				time.sleep(0.2)
 				try:
 					if self.receive_str(self.connection,cliente.INT_SIZE) == cliente.ENEMY:
 						if self.receive_int(self.connection,cliente.INT_SIZE) == 0:
 							print("\nINIMIGO ENCONTRADO!")
-							print("Aguardar companheiro (W) ou Atacar sozinho (S)?")
+							print("Aguardar companheiro (W) ou Atacar sozinho (A)?")
 							
 							choice = input().lower()
 							if choice == "w":
 								print("À espera do companheiro...")
 								self.send_str(self.connection, cliente.WAIT_OP)
 								time.sleep(30)
-							elif choice == "s":
+							elif choice == "a":
 								print("A atacar o inimigo...")
 								self.send_str(self.connection, cliente.ATTACK_OP)
 								time.sleep(30)
@@ -98,7 +100,9 @@ class Interface:
 					pass
 
 				print("Indique a posição por onde quer ir (W,A,S ou D) e pressione enter ('.' para fim)\n")
-				res:str = input()
+				res:str = input().lower().strip()
+				if res == "":
+					continue
 				if res == "w":
 					self.send_str(self.connection, cliente.MOVE_UP)
 				if res == "s":
@@ -107,7 +111,7 @@ class Interface:
 					self.send_str(self.connection, cliente.MOVE_LEFT)
 				if res == "d":
 					self.send_str(self.connection, cliente.MOVE_RIGHT)
-
+				
 				if res == "h":
 					self.send_str(self.connection, cliente.HEAL_OP)
 					

@@ -11,6 +11,7 @@ Ao iniciar o servidor é criado aleatoriamente um mapa de jogo com um número de
 "#" - Paredes<br/>
 "%" - Inimigos<br/>
 "$" - Baús (Ainda não implementado)<br/>
+"." - Espaços Vazios<br/>
 (A-Z) - Jogador (Primeira letra do nome do jogador)<br/>
 
 
